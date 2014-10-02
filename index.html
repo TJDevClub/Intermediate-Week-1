@@ -26,8 +26,6 @@
 		<div style="position:absolute;margin-left:25px;" id="h">
 			<p>Stuff you want to say here</p>
 			<p>Template by <a href="http://github.com/mjkaufer">mjkaufer</a></p>
-			<a href="javascript:demo1()">Demo 1</a>
-			<a href="javascript:demo2()">Demo 2</a>
 		</div>
 
 		<script>
@@ -38,8 +36,6 @@
 			var windowHalfY = window.innerHeight / 2;
 			var particleMaterial; //an example particle material to use
 			var count;//increases each call of render
-      var variableFunction = function(){};//to make different things happen in different classes and stuff to make transitions better while reducing iffs everywhere
-
 			//declare other vars here
 
 			init();
@@ -65,9 +61,6 @@
 						context.beginPath();
 						context.arc(0, 0, 1, 0, PI2, true);
 						context.fill();
-      			// context.beginPath();
-      			// context.rect(-0.5,-0.5, 1, 1)
-      			// context.fill();
 					}
 				});//a basic particle material
 
@@ -89,10 +82,9 @@
 			function render(){
 				camera.lookAt(scene.position);
 				//stuff you want to happen continuously here
-        variableFunction();
 				controls.update();
 				renderer.render(scene, camera);
-      	count++;
+      			count++;
 			}
 
 		</script>
