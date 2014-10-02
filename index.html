@@ -64,6 +64,8 @@
 
 				var particle = new THREE.Particle(particleMaterial);
 
+				particle.scale.x = particle.scale.y = 10;
+
 				scene.add(particle);
 
 				renderer = new THREE.CanvasRenderer();
