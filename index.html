@@ -37,6 +37,7 @@
 			var particleMaterial;
 			var particle;
 			var count;
+			var trailGroup;
 			
 			init();
 			animate();
@@ -69,12 +70,21 @@
 
 				scene.add(particle);
 
+				trailGroup = new THREE.Object3D();
+				scene.add(trailGroup);
+
 				renderer = new THREE.CanvasRenderer();
 				renderer.setSize(window.innerWidth, window.innerHeight);
 
 				container.appendChild(renderer.domElement);
 				document.addEventListener('mousemove', onDocumentMouseMove, false);
 				window.addEventListener('resize', onWindowResize, false);
+			}
+
+			function createTrailingParticle(pos){
+				var p = new THREE.Particle(particleMaterial);
+				p.position = pos.clone();
+				return p;
 			}
 
 			function animate(){
@@ -86,8 +96,14 @@
 				camera.lookAt(scene.position);
 				particle.position.x = 100 * Math.sin(count / 1000 * (Math.PI * 2));
 				particle.position.y = 100 * Math.sin(count / 500 * (Math.PI * 2));
+				particle.position.z = 100 * Math.sin(count / 250 * (Math.PI * 2));
 				controls.update();
 				renderer.render(scene, camera);
+				if(count % 50 == 0)
+					trailGroup.add(createTrailingParticle(particle.position));
+
+				if(trailGroup.children.length > 5)
+					trailGroup.children.splice(0,1);
       			count++;
 			}
 
