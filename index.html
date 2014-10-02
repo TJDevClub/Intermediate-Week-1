@@ -34,7 +34,8 @@
 			var mouseX, mouseY;
 			var windowHalfX = window.innerWidth / 2;
 			var windowHalfY = window.innerHeight / 2;
-			var particleMaterial; 
+			var particleMaterial;
+			var particle;
 			var count;
 			
 			init();
@@ -62,7 +63,7 @@
 					}
 				});
 
-				var particle = new THREE.Particle(particleMaterial);
+				particle = new THREE.Particle(particleMaterial);
 
 				particle.scale.x = particle.scale.y = 10;
 
@@ -83,7 +84,7 @@
 
 			function render(){
 				camera.lookAt(scene.position);
-				
+				particle.position.x += 0.5;
 				controls.update();
 				renderer.render(scene, camera);
       			count++;
