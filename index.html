@@ -85,6 +85,7 @@
 			function render(){
 				camera.lookAt(scene.position);
 				particle.position.x = 100 * Math.sin(count / 1000 * (Math.PI * 2));
+				particle.position.y = 100 * Math.sin(count / 500 * (Math.PI * 2));
 				controls.update();
 				renderer.render(scene, camera);
       			count++;
