@@ -99,10 +99,9 @@
 				particle.position.z = 100 * Math.sin(count / 250 * (Math.PI * 2));
 				controls.update();
 				renderer.render(scene, camera);
-				if(count % 50 == 0)
-					trailGroup.add(createTrailingParticle(particle.position));
+				trailGroup.add(createTrailingParticle(particle.position));
 
-				if(trailGroup.children.length > 5)
+				if(trailGroup.children.length > 100)
 					trailGroup.children.splice(0,1);
       			count++;
 			}
