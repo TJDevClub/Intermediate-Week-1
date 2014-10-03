@@ -97,9 +97,14 @@
 				particle.position.x = 100 * Math.sin(count / 1000 * (Math.PI * 2));
 				particle.position.y = 100 * Math.sin(count / 500 * (Math.PI * 2));
 				particle.position.z = 100 * Math.sin(count / 250 * (Math.PI * 2));
+
 				controls.update();
 				renderer.render(scene, camera);
-				trailGroup.add(createTrailingParticle(particle.position));
+
+				var tail = createTrailingParticle(particle.position);
+				tail.material = tail.material.clone();
+				tail.material.color = new THREE.Color().setHSL((count / 250) % 1, 0.5, 0.5);
+				trailGroup.add(tail);
 
 				if(trailGroup.children.length > 100)
 					trailGroup.children.splice(0,1);
